@@ -7,11 +7,10 @@ let response;
 
 exports.lambdaHandler = async (event, context) => {
 
-  //let request = aws4.sign({
-  let request = {
+  let request = aws4.sign({
     method: 'GET',
     url: "https://ytecj8f77e.execute-api.ap-southeast-1.amazonaws.com/Prod/",
-  }
+  });
 
   let result = await axios(request);
   console.log(JSON.stringify(result.data));
