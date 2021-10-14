@@ -11,6 +11,7 @@ exports.lambdaHandler = async (event, context) => {
 
   let request = {
     method: "GET",
+    // aka invokeB - TODO fill this in dynamically somehow
     url: "https://ytecj8f77e.execute-api.ap-southeast-1.amazonaws.com/Prod/",
     host: "ytecj8f77e.execute-api.ap-southeast-1.amazonaws.com",
     path: "/Prod",
