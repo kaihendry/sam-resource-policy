@@ -30,6 +30,7 @@ exports.lambdaHandler = async (event, context) => {
       }),
     };
   } catch (error) {
+    console.error(error)
     response = {
       statusCode: error.response?.status || 501,
       body: JSON.stringify({
