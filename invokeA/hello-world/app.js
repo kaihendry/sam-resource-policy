@@ -1,4 +1,5 @@
 const AWSXRay = require("aws-xray-sdk-core");
+const AWS = AWSXRay.captureAWS(require('aws-sdk'));
 AWSXRay.captureHTTPsGlobal(require("https"));
 
 const axios = require("axios");
@@ -8,6 +9,11 @@ let response;
 
 exports.lambdaHandler = async (event, context) => {
   console.log(event, context, process.env);
+
+  // What is our role?
+  const sts = new AWS.STS()
+  let whoAmI = await new AWS.STS().getCallerIdentity().promise();
+  console.log(whoAmI)
 
   let request = {
     method: "GET",
@@ -29,14 +35,17 @@ exports.lambdaHandler = async (event, context) => {
         message: ret.data,
       }),
     };
+
   } catch (error) {
     console.error(error)
+
     response = {
       statusCode: error.response?.status || 501,
       body: JSON.stringify({
         message: error.message,
       }),
     };
+
   }
   return response;
 };
