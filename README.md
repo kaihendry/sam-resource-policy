@@ -1,1 +1,3 @@
-Idea is that only invokeA can invokeB
+Idea is that only invokeA can http GET from invokeB
+
+invokeDenied is denied by resource policy

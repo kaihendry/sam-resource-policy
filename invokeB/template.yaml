@@ -4,15 +4,34 @@ Description: >
   invokeB
 
   Sample SAM Template for invokeB
-  
+
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     Timeout: 3
 
+
 Resources:
+  # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-controlling-access-to-apis-resource-policies.html
+  # Resource policy to allow only arn:aws:iam::407461997746:role/invokeA-HelloWorldFunctionRole-1BJPRNPZAL4I3
+  # FAILS WITH REST API doesn't contain any methods
+  # ExplicitApi:
+  #   Type: AWS::Serverless::Api
+  #   Properties:
+  #     StageName: Prod
+  #     EndpointConfiguration: PRIVATE
+  #     Auth:
+  #       ResourcePolicy:
+  #         CustomStatements: {
+  #             Effect: 'Allow',
+  #             Action: 'execute-api:Invoke',
+  #             Resource: ['execute-api:/*/*/*'],
+  #             Principal: '*'
+  #           }
+
+
   HelloWorldFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: hello-world/
       Handler: app.lambdaHandler
