@@ -9,7 +9,7 @@
   "dependencies": {
     "aws-xray-sdk-core": "^3.3.3",
     "aws4": "^1.11.0",
-    "axios": "^0.22.0"
+    "axios": "^0.23.0"
   },
   "scripts": {
     "test": "mocha tests/unit/"
